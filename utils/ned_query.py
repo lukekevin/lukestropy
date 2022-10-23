@@ -1,3 +1,8 @@
+"""
+Author: Kevin Luke
+Date created: 23 OKT 2022
+"""
+
 from astroquery.ipac.ned import Ned
 import astropy.units as u
 import os
