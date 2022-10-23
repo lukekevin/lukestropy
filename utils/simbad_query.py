@@ -9,6 +9,8 @@ import matplotlib.pyplot as plt
 import astropy.units as u
 from astroquery.simbad import Simbad
 import astropy.coordinates as coord
+from astropy.io import ascii
+
 
 def simbad_query_for_skyview_image(zoom_deg,name_loc):
     """
@@ -23,6 +25,9 @@ def simbad_query_for_skyview_image(zoom_deg,name_loc):
     #The query and then the table is displayed
     result_table = Simbad.query_region(location,radius=zoom_deg*u.deg)
     print(result_table)
+    ascii.write(result_table, 
+                'table_ra_{0:f}_dec_{1:f}.dat'.format(RA,DEC), 
+                overwrite=True)
     
     
 if __name__ == '__main__':
