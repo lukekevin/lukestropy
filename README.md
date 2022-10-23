@@ -3,6 +3,6 @@ Collection of various utilities scrapped from popular python codes for astronomy
 
 ## Requirments
 For running the codes successfully you will  need 
-`numpy, scipy, intensity-analysis utils,frb-common,  DM_phase, frb-constant, sigpyproc3, simpulse libraries` preinstalled. 
+`numpy, scipy, intensity-analysis utils,frb-common,  DM_phase, frb-constant, sigpyproc3, simpulse, astropy, astroquery libraries` preinstalled. 
 
 The `frb-common, frb-constants, intensity-analysis utils` libraries are closed CHIME/FRB libraries from GITHUB. 
