@@ -49,6 +49,12 @@ Query any of the simbad data base survey and print the table with all the object
 ##### Usage
 `python simbad_query.py --args` 
 
+### 9) ned_query.py
+Query any of the ned data base survey for a ra dec  and print the table with all the objects and save the table and plot the images along with saving them.
+<br />
+##### Usage
+`python ned_query.py --args` 
+
 
 
 
