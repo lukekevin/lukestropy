@@ -14,6 +14,7 @@ import astropy.coordinates as coord
 import matplotlib.pyplot as plt
 
 
+
 def ned_query(zoom_deg,loc, region_name=None ):
     """
     For the region entered do a ned query to list all objects and then plot the objects
@@ -49,33 +50,34 @@ def ned_query(zoom_deg,loc, region_name=None ):
         ax.set(xlabel="RA", ylabel="Dec")
         fig.savefig('nedquery_{}.jpeg'.format(objects))
         
-    for obj in object_list:
-        spectra = Ned.get_spectra(obj)
-        print(len(spectra))
-        if len(spectra)==0:
-            print('Spectra Not Found for the region')
-        for spectras,i in zip(spectra,range(len(spectra))):
-            d=str(i)
-            print(spectras[0].shape)
-            fig = plt.figure(figsize=(20, 10))
-            ax=fig.add_subplot(111)
-            ax.set(xlabel='wavelenght',ylabel='flux')
-            ax.plot(spectras[0].data)
-            fig.savefig(d+'spec.jpg')
-            
+def ned_spectra(name_loc):
+    spectra = Ned.get_spectra(name_loc)
+    for spectras,i in zip(spectra,range(len(spectra))):
+        d=str(i)
+        print(spectras[0].shape)
+        fig = plt.figure(figsize=(20, 10))
+        ax=fig.add_subplot(111)
+        ax.set(xlabel='wavelenght',ylabel='flux')
+        ax.plot(spectras[0].data)
+        fig.savefig(d+'spec.jpg')
 
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
     parser.add_argument('name_loc', type=str,
                        help='Input the RA, DEC or name of the region. eg: 34.45,56,78')
+    parser.add_argument('--makespectra', dest='makespectra',
+                        default=False, action='store_true')
     
     args = parser.parse_args()
     name_loc=args.name_loc
-    
-    #Specify the foa of the area
-    print('Enter the radius to be zoomed in degree')
-    zoom_deg=float(input())
-    
+    makespectra=args.makespectra
+
     #Do the search and plot the images
-    ned_query(zoom_deg,name_loc)
+    if makespectra is None:
+        #Specify the foa of the area
+        print('Enter the radius to be zoomed in degree')
+        zoom_deg=float(input())
+        ned_query(zoom_deg,name_loc)
+    else:
+        ned_spectra(name_loc)     
