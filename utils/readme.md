@@ -61,6 +61,11 @@ Query any of the sdss data base survey for a given object name   and get the spe
 ##### Usage
 `python sdss_query.py --args` 
 
+### 11) sdss_skyservice.py
+Query any of the sdss skyservice client for a given ra and dec  and get the image 
+<br />
+##### Usage
+`python sdss_skyservice.py --args` 
 
 
 
