@@ -1,5 +1,5 @@
 # lukestropy
-Collection of various utilities scrapped from popular python codes for astronomy and more specifically FRB astronomy.
+Collection of various utilities grapped and compiled in a terminal version of python from various surveys for astronomy and more specifically FRB astronomy.
 
 ## Requirments
 For running the codes successfully you will  need 
