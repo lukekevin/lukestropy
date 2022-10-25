@@ -1,3 +1,8 @@
+"""
+Author: Kevin Luke
+Date: Created 25 OKT 2022
+"""
+
 import matplotlib 
 from astropy.io import ascii
 import numpy as np
