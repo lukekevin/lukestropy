@@ -1,3 +1,7 @@
+"""
+Author: Kevin Luke
+Date: Created 25 OKT 2022
+"""
 import matplotlib 
 import numpy as np
 import matplotlib.pyplot as plt
