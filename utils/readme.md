@@ -55,6 +55,12 @@ Query any of the ned data base survey for a ra dec  and print the table with all
 ##### Usage
 `python ned_query.py --args` 
 
+### 10) sdss_query.py
+Query any of the sdss data base survey for a given object name   and get the spectra and the image 
+<br />
+##### Usage
+`python sdss_query.py --args` 
+
 
 
 
