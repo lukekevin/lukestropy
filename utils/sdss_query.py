@@ -15,11 +15,10 @@ from astroquery.sdss import SDSS
 import argparse
 
 
-def spectra_sdss(galaxy_name):
+def image_sdss(galaxy_name,band_name):
     """
-    Get the spectra of any object or galaxy from SDSS
+    Get the image of any object or galaxy from SDSS
     """
-    
     #galaxy name to be resolved into coordinates
     galaxy = SkyCoord.from_name(galaxy_name)
     pos = coords.SkyCoord(galaxy.ra, galaxy.dec, frame='icrs')
@@ -29,7 +28,26 @@ def spectra_sdss(galaxy_name):
     print('Data found in the search:' )
     print(xid)
     
-    #get the spectra of the hits I:e xid found in the sdss for the given object or the galaxy
+    #Get the image of that galaxy from SDSS database
+    images = SDSS.get_images(matches=xid, band=band_name)
+    image_data=images[0][0].data
+    
+    #special filter to be done on the image so that the galaxy is visible
+    clipped_image = image_data.copy()
+    clipped_image[clipped_image>1.0]=1.0
+    
+    #plot the image
+    fig= plt.figure(figsize=(10,10))
+    ax=fig.subplots()
+    ax.imshow(clipped_image)
+    fig.savefig('galaxy_image_galname_{0:s}.jpg'.format(galaxy_name))
+    
+    return xid
+
+def spectra_sdss(xid,galaxy_name):
+    """
+    get the spectra of the hits I:e xid found in the sdss for the given object or the galaxy
+    """
     spectra = SDSS.get_spectra(matches=xid)
     for spec,i in zip(spectra,range(len(spectra))):
         #spectra[x] where x is the number of hits
@@ -48,37 +66,25 @@ def spectra_sdss(galaxy_name):
         ax.set_ylabel('flux (nanomaggies)')
         fig.savefig('galaxy_spectra_{0:d}_galname_{1:s}.jpg'.format(i,galaxy_name))
         
-     #return the number of hits obtained for further query   
-    return xid
-
-def image_sdss(xid, galaxy_name):
-    
-    """
-    Get the image of that galaxy from SDSS database
-    """
-    images = SDSS.get_images(matches=xid, band='g')
-    image_data=images[0][0].data
-    
-    #special filter to be done on the image so that the galaxy is visible
-    clipped_image = image_data.copy()
-    clipped_image[clipped_image>1.0]=1.0
-    
-    #plot the image
-    fig= plt.figure(figsize=(10,10))
-    ax=fig.subplots()
-    ax.imshow(clipped_image)
-    fig.savefig('galaxy_image_galname_{0:s}.jpg'.format(galaxy_name))
-    
-    
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('galaxy_name', type=str)
+    parser.add_argument('galaxy_name', type=str, 
+                       help='Type the name of the galaxy like NGC5406')
+    parser.add_argument('--band_name', type=str, default='g',
+                       help='Specify the band name to be used from u, g, i, r of SDSS CCD')
+    parser.add_argument('--make_spectra',dest='make_spectra',
+                        default=None, action='store_true',
+                       help='Do you want a spectra?')
+
     args = parser.parse_args()
     galaxy_name=args.galaxy_name
+    band_name=args.band_name
+    make_spectra=args.make_spectra
     
-    #do the spectra search 
-    xid= spectra_sdss(galaxy_name)
+    #do the image search 
+    xid= image_sdss(galaxy_name, band_name)
     
-    #do the image search
-    image_sdss(xid, galaxy_name)
+    if make_spectra is not None:
+        #do the spectra search
+        spectra_sdss(xid, galaxy_name)
