@@ -1,6 +1,6 @@
 """
 Author: Kevin Luke
-Date: Created 25 OKT 2022
+Date: Created 28 OKT 2022
 """
 
 import matplotlib 
@@ -32,7 +32,7 @@ def image_sdss(galaxy_name,band_name):
     images = SDSS.get_images(matches=xid, band=band_name)
     image_data=images[0][0].data
     
-    #special filter to be done on the image so that the galaxy is visible
+    #special filter to be done on the ismage so that the galaxy is visible
     clipped_image = image_data.copy()
     clipped_image[clipped_image>1.0]=1.0
     
@@ -49,14 +49,18 @@ def spectra_sdss(xid,galaxy_name):
     get the spectra of the hits I:e xid found in the sdss for the given object or the galaxy
     """
     spectra = SDSS.get_spectra(matches=xid)
+    #from IPython import embed; embed()
+    
     for spec,i in zip(spectra,range(len(spectra))):
         #spectra[x] where x is the number of hits
         #spectra[x][1].data is the data
-        spectra_data=spec[1].data
+        spectra_data=spec[1].data  #The np rec array
+        
+        #Write the fits for each match
+       #spec.writeto('spectable_{0:d}_galname_{1:s}.fits'.format(i,galaxy_name))
+        
         #write the table to a .dat format
-        ascii.write(spectra_data ,
-                    'spectable_{0:d}_galname_{1:s}.dat'.format(i,galaxy_name), 
-                    overwrite=True)
+        np.save('spectable_{0:d}_galname_{1:s}.npy'.format(i,galaxy_name),spectra_data)
         
         #plot the spectras from the hits obtained from the database
         fig = plt.figure(figsize=(5, 5))
