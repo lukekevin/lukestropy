@@ -67,11 +67,6 @@ Query any of the sdss skyservice client for a given ra and dec  and get the imag
 ##### Usage
 `python sdss_skyservice.py --args` 
 
-### 12) make_stats.py
-Make plots of various statistical estimates for injections analysis done in data stream of CHIME/FRB telescope 
-<br />
-##### Usage
-`python make_stats.py --args` 
 
 
 
