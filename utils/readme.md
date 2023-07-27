@@ -67,6 +67,12 @@ Query any of the sdss skyservice client for a given ra and dec  and get the imag
 ##### Usage
 `python sdss_skyservice.py --args` 
 
+### 12) fourier_candidates.py
+Perform fourier transform on dedispersed filterbank data
+<br />
+##### Usage
+`python fourier_candidates.py --args` 
+
 
 
 
