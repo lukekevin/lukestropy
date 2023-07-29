@@ -67,6 +67,23 @@ Query any of the sdss skyservice client for a given ra and dec  and get the imag
 ##### Usage
 `python sdss_skyservice.py --args` 
 
+### 12) fourier_candidates.py
+Perform fourier transform on pulsar timeseries data and check for frequencies of highest magnitude.
+<br />
+##### Usage
+`python fourier_candidates.py --args` 
+
+### 13) ignorechan_range_filler.py
+Convert the PRESTO comma seperated range txt file containing ignorechannels to txt file of list of filled channels between the ranges
+<br />
+##### Usage
+`python ignorechan_range_filler.py --args` 
+
+
+`pulsar_studies.py and cluster_filter.py dont run. They are skeleton codes whose parts can be used somehwere useful ;)`
+
+
+
 
 
 
