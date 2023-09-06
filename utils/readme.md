@@ -79,6 +79,12 @@ Convert the PRESTO comma seperated range txt file containing ignorechannels to t
 ##### Usage
 `python ignorechan_range_filler.py --args` 
 
+### 14) msgpack_directconverter.py
+Convert the CHIME/FRB L1 intensity msgpack data to numpy arrays.
+<br />
+##### Usage
+`python msgpack_directconverter.py --args` 
+
 
 `pulsar_studies.py and cluster_filter.py dont run. They are skeleton codes whose parts can be used somehwere useful ;)`
 
