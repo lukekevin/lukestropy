@@ -85,6 +85,8 @@ Convert the CHIME/FRB L1 intensity msgpack data to numpy arrays.
 ##### Usage
 `python msgpack_directconverter.py --args` 
 
+### 15) planet_time.py
+Find approximate rise and set times for planets.
 
 `pulsar_studies.py and cluster_filter.py dont run. They are skeleton codes whose parts can be used somehwere useful ;)`
 
