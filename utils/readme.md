@@ -86,8 +86,12 @@ Convert the CHIME/FRB L1 intensity msgpack data to numpy arrays.
 `python msgpack_directconverter.py --args` 
 
 ### 15) planet_time.py
-Find approximate rise and set times for planets.
+Find approximate rise and set times for planets by pyephem library.
 
+### 16) transit_map.py
+Find approximate rise times, path of planets in the sky by astropy. Ideal to plan star gazing.
+
+### Other codes
 `pulsar_studies.py and cluster_filter.py dont run. They are skeleton codes whose parts can be used somehwere useful ;)`
 
 
