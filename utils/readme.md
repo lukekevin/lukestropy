@@ -91,7 +91,7 @@ Find approximate rise and set times for planets by pyephem library.
 ### 16) transit_map.py
 Find approximate rise times, path of planets in the sky by astropy. Ideal to plan star gazing.
 
-### 16) dist_from_z.py
+### 17) dist_from_z.py
 Find luminosity distance from redshifts assuming cosmological Planck18 model
 
 
